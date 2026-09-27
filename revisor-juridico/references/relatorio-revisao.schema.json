@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Relatorio de revisao juridica",
+  "type": "object",
+  "required": ["resumo_executivo", "achados", "clausulas_ausentes", "verificacoes_pendentes"],
+  "properties": {
+    "resumo_executivo": {"type": "string", "maxLength": 800},
+    "achados": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "severidade", "localizacao", "citacao", "problema", "redline_sugerida"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^ACH-[0-9]+$"},
+          "severidade": {"enum": ["CRITICO", "IMPORTANTE", "MENOR"]},
+          "categoria": {"enum": ["CONFLITO_ENTRE_CLAUSULAS", "INCONSISTENCIA_INTERNA", "AMBIGUIDADE", "RISCO_ASSIMETRICO", "NULIDADE_POTENCIAL", "ESTILO"]},
+          "localizacao": {"type": "string", "description": "Ex: Clausula 5.2"},
+          "citacao": {"type": "string"},
+          "problema": {"type": "string"},
+          "redline_sugerida": {"type": "string", "description": "Texto sugerido, pronto para colar"}
+        }
+      }
+    },
+    "clausulas_ausentes": {"type": "array", "items": {"type": "string"}},
+    "verificacoes_pendentes": {"type": "array", "items": {"type": "string"}, "description": "Itens marcados [VERIFICAR]"}
+  }
+}

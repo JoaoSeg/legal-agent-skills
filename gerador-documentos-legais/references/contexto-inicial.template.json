@@ -1,0 +1,21 @@
+{
+  "tipo_documento": "contrato_prestacao_servicos",
+  "jurisdicao": "BR",
+  "idioma": "pt-BR",
+  "partes": [
+    {"papel": "contratante", "nome": "[PREENCHER]"},
+    {"papel": "contratado", "nome": "[PREENCHER]"}
+  ],
+  "objetivo": "Descrever em 1-3 frases o propósito do documento.",
+  "requisitos": [
+    {"id": "REQ-01", "descricao": "Vigencia de 12 meses com renovacao automatica", "peso": "essencial"},
+    {"id": "REQ-02", "descricao": "Pagamento em 30 dias, com multa de 2% por atraso", "peso": "essencial"},
+    {"id": "REQ-03", "descricao": "Confidencialidade por 5 anos apos o termino", "peso": "desejavel"}
+  ],
+  "restricoes": [
+    "Sem clausula de exclusividade",
+    "Sem arbitragem; foro de Sao Paulo/SP"
+  ],
+  "referencias_normativas": ["Lei 10.406/2002 (Codigo Civil)"],
+  "dados_faltantes_sao_aceitaveis_como_placeholder": true
+}

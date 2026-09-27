@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Relatorio de validacao de aderencia",
+  "type": "object",
+  "required": ["rodada", "cobertura", "requisitos", "violacoes_restricao", "correcoes_solicitadas", "veredito"],
+  "properties": {
+    "rodada": {"type": "integer"},
+    "cobertura": {
+      "type": "object",
+      "required": ["essenciais", "desejaveis"],
+      "properties": {
+        "essenciais": {"type": "number", "minimum": 0, "maximum": 1},
+        "desejaveis": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "requisitos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "status", "evidencia", "observacao"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^REQ-[0-9]+$"},
+          "status": {"enum": ["ATENDIDO", "PARCIAL", "NAO_ATENDIDO", "CONTRARIADO"]},
+          "citacao": {"type": "string", "description": "Trecho do documento que comprova o status"},
+          "clausula": {"type": "string"},
+          "observacao": {"type": "string"}
+        }
+      }
+    },
+    "violacoes_restricao": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["restricao", "citacao", "severidade"],
+        "properties": {
+          "restricao": {"type": "string"},
+          "citacao": {"type": "string"},
+          "severidade": {"enum": ["CRITICO", "IMPORTANTE", "MENOR"]}
+        }
+      }
+    },
+    "correcoes_solicitadas": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["alvo", "instrucao"],
+        "properties": {
+          "alvo": {"type": "string", "description": "Secao/clausula ou REQ-xx"},
+          "instrucao": {"type": "string"}
+        }
+      }
+    },
+    "veredito": {"enum": ["APROVADO_PARA_REVISAO", "DEVOLVIDO_AO_GERADOR"]}
+  }
+}

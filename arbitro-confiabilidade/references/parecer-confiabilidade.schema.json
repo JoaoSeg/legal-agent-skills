@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Parecer de confiabilidade",
+  "type": "object",
+  "required": ["score", "veredito", "dimensoes", "top_riscos", "requer_revisao_humana", "escopo_nao_avaliado", "disclaimer"],
+  "properties": {
+    "score": {"type": "integer", "minimum": 0, "maximum": 95},
+    "veredito": {"enum": ["APROVADO", "APROVADO_COM_RESSALVAS", "NECESSITA_REVISAO", "REJEITADO"]},
+    "dimensoes": {
+      "type": "object",
+      "required": ["aderencia_briefing", "ausencia_conflitos", "consistencia_interna", "completude_juridica"],
+      "properties": {
+        "aderencia_briefing": {"type": "object", "required": ["nota", "base"], "properties": {"nota": {"type": "number"}, "base": {"type": "string", "description": "Ids de achados/citacoes que motivaram a nota"}}},
+        "ausencia_conflitos": {"type": "object", "required": ["nota", "base"], "properties": {"nota": {"type": "number"}, "base": {"type": "string"}}},
+        "consistencia_interna": {"type": "object", "required": ["nota", "base"], "properties": {"nota": {"type": "number"}, "base": {"type": "string"}}},
+        "completude_juridica": {"type": "object", "required": ["nota", "base"], "properties": {"nota": {"type": "number"}, "base": {"type": "string"}}}
+      }
+    },
+    "top_riscos": {"type": "array", "maxItems": 5, "items": {"type": "string"}},
+    "requer_revisao_humana": {"type": "boolean"},
+    "escopo_nao_avaliado": {"type": "array", "items": {"type": "string"}},
+    "disclaimer": {"const": "Parecer automatizado. Nao substitui analise de advogado habilitado."}
+  }
+}
