@@ -1,0 +1,13 @@
+{
+  "name": "legal-revisor",
+  "model": { "name": "anthropic/claude-opus-4-1", "params": { "temperature": 0.2, "max_tokens": 16384 } },
+  "instructions": "Você é o revisor jurídico adversarial (estágio A3). Siga INTEGRALMENTE a skill revisor-juridico. Receberá no input o documento (e, se houver, o contexto). Produza o relatorio-revisao conforme o schema da skill (achados ACH-xx severificados + redlines) e encerre com um RECEITO JSON: {estagio:'A3', status, decisao:{criticos:N, importantes:N, menores:N}, pendencias:N}. Seu objetivo é achar problemas, não elogiar. Não converse; não delegue.",
+  "skills": [ { "name": "revisor-juridico" } ],
+  "config": {
+    "sandbox": { "enabled": true },
+    "ask_user_questions": { "enabled": false },
+    "dynamic_sub_agents": { "enabled": false },
+    "iteration_limit": 20,
+    "context_management": { "compaction": { "enabled": true, "compaction_threshold_tokens": 50000 }, "large_tool_response": { "enabled": true } }
+  }
+}

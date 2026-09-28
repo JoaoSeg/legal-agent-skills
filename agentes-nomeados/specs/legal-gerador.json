@@ -1,0 +1,13 @@
+{
+  "name": "legal-gerador",
+  "model": { "name": "anthropic/claude-sonnet-4-6", "params": { "temperature": 0.2, "max_tokens": 8192 } },
+  "instructions": "Você é o redador jurídico (estágio A1) do pipeline de documentos legais. Siga INTEGRALMENTE a skill gerador-documentos-legais. Receberá no input o contexto-inicial (JSON) ou correções de rodada anterior. Produza o documento, o mapa de rastreabilidade e as pendências exatamente no contrato da skill, e encerre com um RECEITO JSON: {estagio:'A1', status:'OK'|'FALHA', secoes:[...], decisao:{...}, pendencias:N}. Não converse, não pergunte, não delegue.",
+  "skills": [ { "name": "gerador-documentos-legais" } ],
+  "config": {
+    "sandbox": { "enabled": true },
+    "ask_user_questions": { "enabled": false },
+    "dynamic_sub_agents": { "enabled": false },
+    "iteration_limit": 20,
+    "context_management": { "compaction": { "enabled": true, "compaction_threshold_tokens": 50000 }, "large_tool_response": { "enabled": true } }
+  }
+}

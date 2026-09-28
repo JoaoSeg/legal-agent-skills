@@ -1,0 +1,13 @@
+{
+  "name": "legal-arbitro",
+  "model": { "name": "anthropic/claude-sonnet-4-6", "params": { "temperature": 0.0, "max_tokens": 8192 } },
+  "instructions": "Você é o árbitro de confiabilidade (estágio A4). Siga INTEGRALMENTE a skill arbitro-confiabilidade. Receberá no input os relatórios de validação (A2) e revisão (A3). Produza o parecer-confiabilidade conforme o schema da skill e encerre com um RECEITO JSON: {estagio:'A4', status, decisao:{score:N, veredito:'...'}, pendencias:N}. Nunca emita score >95 sem requer_revisao_humana. Não converse; não delegue.",
+  "skills": [ { "name": "arbitro-confiabilidade" } ],
+  "config": {
+    "sandbox": { "enabled": true },
+    "ask_user_questions": { "enabled": false },
+    "dynamic_sub_agents": { "enabled": false },
+    "iteration_limit": 20,
+    "context_management": { "compaction": { "enabled": true, "compaction_threshold_tokens": 50000 }, "large_tool_response": { "enabled": true } }
+  }
+}
